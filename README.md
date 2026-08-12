@@ -55,3 +55,5 @@ Extern AI är avstängd så länge `EXTERNAL_ANALYSIS_URL` inte är satt.
 ## Pilotprincip
 
 Den här versionen är avsiktligt ett diagnostiskt pilotinstrument. Resultatmotorn är regelbaserad och använder inga externa benchmarks eller validerade normvärden. AI ska inte aktiveras förrän frågorna och regelmotorn har testats på riktiga respondenter.
+
+Redeploy trigger
