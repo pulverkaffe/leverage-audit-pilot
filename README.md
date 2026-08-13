@@ -21,6 +21,7 @@ Den guiden beskriver:
 public/                 Webbapp
 functions/api/          Pages Functions / API
 schema.sql              D1-schema
+RESULT-MODEL.md         Resultatstruktur och öppna scoringbeslut
 START-HERE.md           Installation utan Terminal
 PILOT-GUIDE.md          Genomförande av pilot
 package.json            Lokal utveckling, frivillig
