@@ -184,22 +184,22 @@
     app.innerHTML = `
       <section class="card">
         <div class="eyebrow">Leverage Audit · Pilot</div>
-        <h1>Hur beroende är organisationen av din personliga uppmärksamhet?</h1>
-        <p class="lede">Den här diagnostiken letar efter återkommande mönster i beslut, problemlösning, koordinering och arbete som fortfarande behöver gå genom dig.</p>
+        <h1>Hur beroende är din organisation av dig?</h1>
+        <p class="lede">Auditen hjälper dig att se var beslut, problem och arbete fortfarande behöver gå genom dig – och var organisationen skulle kunna fungera mer självständigt.</p>
         <div class="notice">
-          <strong>Det här är inte ett test av “bra ledarskap”.</strong><br>
-          Vissa beslut ska ligga hos dig. Vi försöker identifiera var beroendet verkar vara större än rollen eller situationen kräver – och vad som kan vara värt att undersöka vidare.
+          <strong>Mindre involvering är inte alltid bättre.</strong><br>
+          Vissa beslut ska ligga hos dig. Vi försöker identifiera var organisationen verkar vara mer beroende av dig än vad rollen eller situationen kräver.
         </div>
-        <p class="muted">Svara utifrån den del av organisationen som du leder. De flesta frågor gäller de senaste två veckorna. När en exakt siffra är svår, välj din bästa uppskattning.</p>
+        <p class="muted">Svara utifrån den del av organisationen som du leder. När vi frågar om en vanlig tvåveckorsperiod menar vi två representativa arbetsveckor – inte semester, kris eller en ovanligt intensiv period. Om en exakt siffra är svår, välj din bästa uppskattning.</p>
         <label class="consent">
           <input type="checkbox" id="consentCheck" ${state.consent ? 'checked' : ''} />
-          <span><strong>Pilotmedgivande.</strong> Mina svar får användas för att förbättra Leverage Audit. Jag undviker att lämna känsliga personuppgifter i testet.</span>
+          <span><strong>Pilotmedgivande.</strong> Mina svar får användas för att förbättra Leverage Audit. Jag lämnar inga känsliga personuppgifter i testet.</span>
         </label>
         <div class="btn-row">
           <button class="btn btn-primary" id="startBtn" ${state.consent ? '' : 'disabled'}>${state.startedAt ? 'Fortsätt piloten' : 'Starta – cirka 5–8 min'}</button>
           ${state.startedAt ? '<button class="btn btn-secondary" id="restartBtn">Börja om</button>' : ''}
         </div>
-        <p class="small muted">Pilot-ID: ${escapeHtml(participantId)}. När piloten körs på Cloudflare sparas färdiga svar centralt i D1. En lokal JSON-kopia kan också laddas ner efteråt.</p>
+        <p class="small muted">Pilot-ID: ${escapeHtml(participantId)}</p>
       </section>`;
 
     const consent = document.getElementById('consentCheck');
