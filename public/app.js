@@ -38,30 +38,30 @@
 
   const questions = [
     { id: 'C1', section: 'Kontext', type: 'single', scored: false, text: 'Vilken roll beskriver dig bäst?', options: [
-      'Founder/ägare och vd', 'Anställd vd', 'Annan C-level-roll', 'Affärsområdes- eller divisionschef', 'Funktionschef', 'Annan senior ledarroll'
+      'Grundare/ägare och vd', 'Anställd vd', 'Annan C-level-roll', 'Affärsområdes- eller divisionschef', 'Funktionschef', 'Annan senior ledarroll'
     ].map((label, i) => ({ label, value: i })) },
     { id: 'C2', section: 'Kontext', type: 'single', scored: false, text: 'Ungefär hur många personer arbetar i den del av organisationen som du leder?', options: [
       '1–14', '15–29', '30–59', '60–149', '150–499', '500+'
     ].map((label, i) => ({ label, value: i })) },
     { id: 'C3', section: 'Kontext', type: 'single', scored: false, text: 'Hur många personer rapporterar direkt till dig?', options: [
-      '1–3', '4–6', '7–9', '10–12', '13+'
+      '0', '1–3', '4–6', '7–9', '10–12', '13+'
     ].map((label, i) => ({ label, value: i })) },
-    { id: 'C4', section: 'Kontext', type: 'single', scored: false, text: 'Hur har antalet personer i den del av organisationen du leder förändrats under de senaste 12 månaderna?', options: [
+    { id: 'C4', section: 'Kontext', type: 'single', scored: false, text: 'Hur har antalet personer i din del av organisationen förändrats under de senaste 12 månaderna?', options: [
       'Minskat', 'Ungefär oförändrat', 'Ökat med upp till 25 %', 'Ökat med 26–50 %', 'Ökat med mer än 50 %', 'Vet inte'
     ].map((label, i) => ({ label, value: i })) },
 
-    { id: 'M1', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta bad någon dig fatta ett beslut som du bedömde låg inom personens eller teamets normala ansvarsområde?', options: F5 },
-    { id: 'M2', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta bad någon dig bekräfta eller godkänna ett beslut som personen formellt eller praktiskt hade mandat att fatta själv?', options: F5 },
-    { id: 'M3', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta väntade ett viktigt beslut minst en arbetsdag främst därför att du inte var tillgänglig?', options: F5 },
-    { id: 'M4', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta kom en fråga tillbaka till dig efter att du tidigare hade lämnat tydligt ansvar för den till någon annan?', options: F5 },
-    { id: 'M5', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta tog du själv över ett problem eller en uppgift som redan hade en tydlig ägare?', options: F5 },
-    { id: 'M6', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta löste du ett problem åt en person eller ett team när du tidigare hade hjälpt dem att lösa samma typ av problem?', options: F5 },
-    { id: 'M7', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta behövde du själv lösa en prioriteringskonflikt eller trade-off mellan två personer, team eller funktioner som de inte kunde lösa utan dig?', options: F5 },
-    { id: 'M8', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, i hur många möten var en huvudanledning till din närvaro att gruppen behövde din auktoritet för att fatta beslut, lösa oenighet eller hålla riktning?', options: [
+    { id: 'M1', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta ber någon dig fatta ett beslut som du tycker att personen eller teamet borde kunna fatta själv?', options: F5 },
+    { id: 'M2', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta ber någon dig godkänna ett beslut som personen egentligen har rätt att fatta själv?', options: F5 },
+    { id: 'M3', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta blir ett viktigt beslut försenat med minst en arbetsdag främst för att du inte är tillgänglig?', options: F5 },
+    { id: 'M4', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta kommer en fråga eller uppgift tillbaka till dig trots att du redan har gjort det tydligt vem som ansvarar för den?', options: F5 },
+    { id: 'M5', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta tog du själv över ett problem eller en uppgift som redan hade en tydlig ägare?', options: F5 },
+    { id: 'M6', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta löste du ett problem åt en person eller ett team som du tidigare hade hjälpt att lösa samma typ av problem?', options: F5 },
+    { id: 'M7', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta behövde du själv gå in och lösa en prioriteringskonflikt eller avvägning mellan personer, team eller funktioner som inte kunde komma vidare utan dig?', options: F5 },
+    { id: 'M8', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, i hur många möten deltog du främst för att gruppen behövde din auktoritet för att fatta beslut, lösa oenighet eller hålla fast vid en gemensam riktning?', options: [
       { label: '0 möten', value: 0 }, { label: '1 möte', value: 1 }, { label: '2–3 möten', value: 2 }, { label: '4–6 möten', value: 3 }, { label: '7+ möten', value: 4 }
     ] },
-    { id: 'M9', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta stod arbete som andra ägde stilla i väntan på din review, feedback eller sign-off?', options: F5 },
-    { id: 'M10', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Tänk på den senaste gången under de senaste sex månaderna då du var så gott som helt otillgänglig för arbetet i minst två arbetsdagar. När du kom tillbaka, vad hade hänt?', options: [
+    { id: 'M9', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta stod arbete som någon annan ansvarade för stilla i väntan på din granskning, återkoppling eller ditt godkännande?', options: F5 },
+    { id: 'M10', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Tänk på den senaste gången under de senaste sex månaderna då du var i stort sett helt otillgänglig för arbetet i minst två arbetsdagar. När du kom tillbaka, vad hade hänt?', options: [
       { label: 'Verksamheten hade i stort sett fortsatt utan att viktiga frågor väntade på mig.', value: 0 },
       { label: 'Några få frågor hade väntat.', value: 1 },
       { label: 'Flera viktiga frågor eller beslut hade väntat.', value: 2 },
@@ -69,23 +69,23 @@
       { label: 'Delar av verksamheten hade tydligt tappat fart eller stannat.', value: 4 },
       { label: 'Jag har inte varit så otillgänglig under de senaste sex månaderna.', value: null, missing: true }
     ] },
-    { id: 'M11', section: 'Vad händer i praktiken?', type: 'multi', scored: false, text: 'Om du från och med imorgon var helt otillgänglig i tio arbetsdagar, vilka delar skulle sannolikt tappa tydligt tempo eller kvalitet? Välj alla som gäller.', options: [
-      'Återkommande operativa beslut', 'Prioriteringar och resursavvägningar', 'Tvärfunktionell koordinering', 'Problemlösning och undantag', 'Personal- och bemanningsfrågor', 'Kund- eller kommersiella beslut inom mitt ansvarsområde', 'Leverans eller kvalitet', 'Inget av ovanstående', 'Annat'
+    { id: 'M11', section: 'Vad händer i praktiken?', type: 'multi', scored: false, text: 'Om du från och med imorgon var helt otillgänglig i tio arbetsdagar, vilka delar av arbetet skulle sannolikt märkbart tappa tempo eller kvalitet?', options: [
+      'Återkommande operativa beslut', 'Prioriteringar och resursavvägningar', 'Samordning mellan team eller funktioner', 'Problemlösning och hantering av undantag', 'Personal- och bemanningsfrågor', 'Kund- eller kommersiella beslut inom mitt ansvarsområde', 'Leverans eller kvalitet', 'Inget av ovanstående', 'Annat'
     ].map((label, i) => ({ label, value: i })) },
-    { id: 'M12', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en normal arbetsvecka, ungefär hur många timmar lägger du på arbete som någon annan i organisationen rimligen skulle kunna äga med acceptabel kvalitet och risk?', options: T5 },
+    { id: 'M12', section: 'Vad händer i praktiken?', type: 'single', scored: true, text: 'Under en vanlig arbetsvecka, ungefär hur många timmar lägger du på arbete som någon annan i organisationen rimligen skulle kunna ansvara för med acceptabel kvalitet och risk?', options: T5 },
 
-    { id: 'H1', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'För viktiga återkommande beslut i din del av organisationen: hur ofta är det tydligt redan innan frågan uppstår vem som har rätt att fatta slutbeslutet?', options: P5 },
-    { id: 'H2', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När ett beslut ligger nära gränsen för någons mandat: hur ofta är det tydligt när personen ska avgöra själv och när frågan ska eskaleras?', options: P5 },
-    { id: 'H3', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När ett viktigt återkommande område underpresterar: hur ofta är det omedelbart tydligt vilken person som äger utfallet?', options: P5 },
-    { id: 'H4', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'För hur stor andel av de viktigaste ansvarsområdena under dig finns minst en person som du bedömer kan hantera normala beslut och problem under tio arbetsdagar utan löpande stöd från dig?', options: C5 },
-    { id: 'H5', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta kom en fråga till dig främst därför att du satt på information, historik eller kontext som andra behövde för att gå vidare?', options: F5 },
-    { id: 'H6', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under de senaste två veckorna, hur ofta behövde någon ditt personliga godkännande för resurser, budget eller prioriteringar inom ett område som personen själv ansvarar för?', options: F5 },
-    { id: 'H7', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När två personer eller team med olika mål behöver göra en viktig trade-off: hur ofta finns en fungerande mekanism för att lösa frågan utan att du behöver bli slutlig integrator?', options: P5 },
-    { id: 'H8', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under de senaste två veckorna, när någon tog upp ett beslut som du bedömde låg inom personens eget mandat: hur ofta slutade situationen med att personen själv fattade slutbeslutet?', options: [
+    { id: 'H1', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När det gäller viktiga återkommande beslut i din del av organisationen, hur ofta är det tydligt redan innan frågan uppstår vem som har rätt att fatta det slutliga beslutet?', options: P5 },
+    { id: 'H2', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När ett beslut ligger nära gränsen för någons mandat, hur ofta är det tydligt när personen ska avgöra frågan själv och när den ska eskaleras?', options: P5 },
+    { id: 'H3', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När ett viktigt område i verksamheten underpresterar, hur ofta är det direkt tydligt vem som ansvarar för resultatet?', options: P5 },
+    { id: 'H4', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'För hur stor andel av de viktigaste ansvarsområdena i din del av organisationen finns det minst en person som du bedömer kan hantera normala beslut och problem i tio arbetsdagar utan löpande stöd från dig?', options: C5 },
+    { id: 'H5', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta behövde någon vända sig till dig främst för att du hade information, historik eller sammanhang som andra behövde för att gå vidare?', options: F5 },
+    { id: 'H6', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, hur ofta behövde någon ditt godkännande för resurser, budget eller prioriteringar inom ett område som personen själv ansvarar för?', options: F5 },
+    { id: 'H7', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'När två personer eller team med olika mål behöver göra en viktig avvägning, hur ofta finns det ett fungerande sätt för dem att lösa frågan utan att du behöver avgöra den?', options: P5 },
+    { id: 'H8', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Under en vanlig tvåveckorsperiod, när någon tog upp en beslutsfråga som du ansåg låg inom personens eget mandat, hur ofta slutade det med att personen själv fattade beslutet?', options: [
       ...P5,
       { label: 'Inget sådant tillfälle', value: null, missing: true }
     ] },
-    { id: 'H9', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Tänk på den senaste gången under de senaste tre månaderna då någon fattade ett beslut inom sitt mandat som du själv skulle ha fattat annorlunda, men där beslutet ändå låg inom acceptabel risk och kvalitet. Vad hände?', options: [
+    { id: 'H9', section: 'Vad kan ligga bakom?', type: 'single', scored: true, text: 'Tänk på den senaste gången under de senaste tre månaderna då någon fattade ett beslut inom sitt mandat som du själv skulle ha fattat annorlunda, men som ändå låg inom acceptabla gränser för risk och kvalitet. Hur agerade du?', options: [
       { label: 'Jag ändrade eller tog över beslutet.', value: 4 },
       { label: 'Jag bad personen ändra beslutet.', value: 3 },
       { label: 'Vi diskuterade det och fattade i praktiken slutbeslutet tillsammans.', value: 2 },
@@ -102,7 +102,7 @@
     },
     'Vad händer i praktiken?': {
       title: 'Vad händer i praktiken?',
-      text: 'Utgå så långt det går från de senaste två veckorna. Vi är mer intresserade av faktiska händelser än av hur organisationen är tänkt att fungera.'
+      text: 'Utgå från den referensperiod som anges i frågan. När det står ”en vanlig tvåveckorsperiod”, tänk på två representativa arbetsveckor. Vi är mer intresserade av faktiska händelser än av hur organisationen är tänkt att fungera.'
     },
     'Vad kan ligga bakom?': {
       title: 'Vad kan ligga bakom?',
@@ -124,7 +124,28 @@
 
   function loadState() {
     try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { answers: {}, timings: {}, startedAt: null };
+      const loaded = JSON.parse(localStorage.getItem(STORAGE_KEY)) || { answers: {}, timings: {}, startedAt: null };
+
+      // Keep in-progress pilot answers aligned when copy or unscored context options change.
+      if (loaded.answers?.C1?.label === 'Founder/ägare och vd') {
+        loaded.answers.C1.label = 'Grundare/ägare och vd';
+      }
+      if (loaded.answers?.C3) {
+        const c3 = questions.find(q => q.id === 'C3');
+        const optionIndex = c3.options.findIndex(option => option.label === loaded.answers.C3.label);
+        if (optionIndex >= 0) {
+          loaded.answers.C3.optionIndex = optionIndex;
+          loaded.answers.C3.value = c3.options[optionIndex].value;
+        }
+      }
+      if (loaded.answers?.M11?.values) {
+        const m11 = questions.find(q => q.id === 'M11');
+        loaded.answers.M11.labels = loaded.answers.M11.values
+          .map(value => m11.options.find(option => option.value === value)?.label)
+          .filter(Boolean);
+      }
+
+      return loaded;
     } catch (_) {
       return { answers: {}, timings: {}, startedAt: null };
     }
@@ -199,7 +220,6 @@
           <button class="btn btn-primary" id="startBtn" ${state.consent ? '' : 'disabled'}>${state.startedAt ? 'Fortsätt piloten' : 'Starta – cirka 5–8 min'}</button>
           ${state.startedAt ? '<button class="btn btn-secondary" id="restartBtn">Börja om</button>' : ''}
         </div>
-        <p class="small muted">Pilot-ID: ${escapeHtml(participantId)}</p>
       </section>`;
 
     const consent = document.getElementById('consentCheck');
@@ -495,7 +515,7 @@
     coordination: {
       name: 'Coordination Hub',
       short: 'Organisationen använder dig som integrator mellan roller och funktioner.',
-      explain: 'Det tydligaste mönstret ligger mellan människor och team snarare än inne i enskilda roller. Din auktoritet behövs återkommande för trade-offs, oenighet eller riktning över gränser.'
+      explain: 'Det tydligaste mönstret ligger mellan människor och team snarare än inne i enskilda roller. Din auktoritet behövs återkommande för avvägningar, oenighet eller riktning över gränser.'
     },
     availability: {
       name: 'Availability Dependency',
@@ -523,17 +543,17 @@
     if (!a) return null;
     const label = optionLabel(questions.find(q => q.id === id), a);
     const map = {
-      M1: `${label}: någon bad dig fatta beslut som du bedömde låg inom personens eller teamets normala ansvar.`,
-      M2: `${label}: någon bad om din bekräftelse trots eget mandat.`,
-      M3: `${label}: ett viktigt beslut väntade minst en arbetsdag främst för att du inte var tillgänglig.`,
-      M4: `${label}: en fråga kom tillbaka efter att ansvar redan hade lämnats till någon annan.`,
+      M1: `${label}: någon bad dig fatta ett beslut som personen eller teamet borde kunna fatta själv.`,
+      M2: `${label}: någon bad om ditt godkännande trots att personen hade rätt att fatta beslutet själv.`,
+      M3: `${label}: ett viktigt beslut blev minst en arbetsdag försenat främst för att du inte var tillgänglig.`,
+      M4: `${label}: en fråga eller uppgift kom tillbaka trots att du hade gjort det tydligt vem som ansvarade för den.`,
       M5: `${label}: du tog själv över ett problem eller en uppgift som redan hade en tydlig ägare.`,
       M6: `${label}: du löste återkommande samma typ av problem åt andra.`,
-      M7: `${label}: du behövde lösa en prioriteringskonflikt eller trade-off mellan personer/team.`,
-      M8: `${label}: din auktoritet var en huvudanledning till att du behövde vara med i möten.`,
-      M9: `${label}: arbete som andra ägde stod stilla i väntan på din review, feedback eller sign-off.`,
+      M7: `${label}: du behövde gå in och lösa en prioriteringskonflikt eller avvägning mellan personer, team eller funktioner.`,
+      M8: `${label}: du deltog i möten främst för att gruppen behövde din auktoritet.`,
+      M9: `${label}: arbete som någon annan ansvarade för stod stilla i väntan på din granskning, återkoppling eller ditt godkännande.`,
       M10: label,
-      M12: `${label} per normalvecka uppskattar du går till arbete som någon annan rimligen skulle kunna äga.`
+      M12: `Du uppskattar att ${label.toLowerCase()} under en vanlig arbetsvecka går till arbete som någon annan rimligen skulle kunna ansvara för.`
     };
     return map[id] || label;
   }
@@ -559,7 +579,7 @@
       capability_constraint: 'En möjlig förklaring är att det saknas tillräcklig distribuerad capability för att normala beslut och problem ska kunna hanteras utan ditt löpande stöd.',
       information_concentration: 'Flera frågor verkar kunna nå dig därför att viktig information, historik eller kontext fortfarande är koncentrerad hos dig.',
       resource_authority_mismatch: 'Ansvar kan ha flyttats längre än resurs- och prioriteringsmandatet, vilket gör att frågor ändå behöver komma tillbaka till dig.',
-      coordination_architecture_gap: 'Dina svar är förenliga med att organisationen saknar en tillräckligt fungerande mekanism för att lösa vissa tvärfunktionella trade-offs utan dig.',
+      coordination_architecture_gap: 'Dina svar är förenliga med att organisationen saknar ett tillräckligt fungerande sätt att lösa vissa tvärfunktionella avvägningar utan dig.',
       leader_recentralization: 'Det finns en signal om att formellt mandat ibland kan bli smalare i praktiken genom hur beslut återtas eller påverkas.'
     };
     return texts[driver.key];
@@ -575,13 +595,13 @@
       case 'intervention':
         return 'Välj de två problemtyper som oftast kommer tillbaka till dig och undersök varför ansvar inte blir faktisk självständighet i just de situationerna.';
       case 'coordination':
-        return 'Kartlägg de återkommande tvärfunktionella trade-offs som kräver dig och skilj på dem som kräver ditt omdöme och dem som behöver en bättre koordinationsmekanism.';
+        return 'Kartlägg de återkommande tvärfunktionella avvägningar som kräver dig och skilj på dem som kräver ditt omdöme och dem som behöver ett bättre sätt att samordna arbetet.';
       case 'availability':
         return 'Identifiera vad som faktiskt väntar när du är otillgänglig och klassificera varje punkt som legitimt ledarbeslut, informationsberoende eller onödig approval.';
       case 'leaderHeldWork':
         return 'Gör en konkret inventering av ditt återkommande arbete och identifiera vilket ansvar som ligger kvar hos dig främst därför att det alltid har gjort det.';
       default:
-        return 'Använd nästa två veckor som observationsperiod: notera varje beslut, problem eller trade-off som verkligen måste gå genom dig och varför.';
+        return 'Använd nästa två veckor som observationsperiod: notera varje beslut, problem eller avvägning som verkligen måste gå genom dig och varför.';
     }
   }
 
@@ -637,7 +657,7 @@
           <h3>Vad mönstret kan betyda</h3>
           <p>${escapeHtml(primary.explain)}</p>
           ${secondary && !diagnostic.dual_primary ? `<p><strong>Sekundär signal:</strong> ${escapeHtml(secondary.name)} – ${escapeHtml(secondary.short)}</p>` : ''}
-          ${diagnostic.executive_attention_cost ? `<p><strong>Executive attention cost:</strong> Du uppskattar ${escapeHtml(diagnostic.executive_attention_cost.toLowerCase())} per normalvecka till arbete som någon annan rimligen skulle kunna äga. Auditen fastställer inte hur mycket av tiden som faktiskt går att frigöra.</p>` : ''}
+          ${diagnostic.executive_attention_cost ? `<p><strong>Tid i arbete som någon annan skulle kunna ansvara för:</strong> Du uppskattar ${escapeHtml(diagnostic.executive_attention_cost.toLowerCase())} under en vanlig arbetsvecka. Auditen fastställer inte hur mycket av tiden som faktiskt går att frigöra.</p>` : ''}
         </div>
 
         <div class="section">
@@ -667,10 +687,6 @@
         </div>
         <div class="status" id="submitStatus">Försöker spara pilotdata…</div>
 
-        <details class="debug">
-          <summary>Pilotverktyg: diagnostic JSON</summary>
-          <pre>${escapeHtml(JSON.stringify(diagnostic, null, 2))}</pre>
-        </details>
       </section>`;
 
     document.getElementById('printBtn').addEventListener('click', () => window.print());
@@ -709,7 +725,7 @@
     if (!status) return;
 
     if (state.savedSubmissionId === submissionId) {
-      status.textContent = 'Pilotdata sparad i Cloudflare.';
+      status.textContent = 'Pilotdata sparad.';
       return;
     }
 
@@ -724,7 +740,7 @@
       if (!response.ok || !result.ok) throw new Error(result.error || `HTTP ${response.status}`);
       state.savedSubmissionId = result.submission_id || submissionId;
       saveState();
-      status.textContent = 'Pilotdata sparad i Cloudflare.';
+      status.textContent = 'Pilotdata sparad.';
     } catch (err) {
       console.error('Cloudflare submission failed', err);
       status.innerHTML = 'Kunde inte spara centralt just nu. <strong>Data finns kvar lokalt</strong> och kan laddas ner med knappen ovan.';
