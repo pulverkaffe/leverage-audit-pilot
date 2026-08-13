@@ -20,6 +20,8 @@ Den guiden beskriver:
 ```text
 public/                 Webbapp
 functions/api/          Pages Functions / API
+tests/scenarios/        Åtta valideringsscenarier med svar på alla 25 frågor
+tests/*.test.js          Kontrakts- och resultatmodelltester
 schema.sql              D1-schema
 RESULT-MODEL.md         Resultatstruktur och öppna scoringbeslut
 START-HERE.md           Installation utan Terminal
@@ -27,6 +29,10 @@ PILOT-GUIDE.md          Genomförande av pilot
 package.json            Lokal utveckling, frivillig
 wrangler.toml.example   CLI/config-as-code, frivillig
 ```
+
+## Tester
+
+Kör `npm test` för att validera scenariofilerna mot de aktuella frågorna och kontrollera de delar av resultatmodellen som redan har en scoringkoppling. Testsviten inför ingen ny scoringlogik; öppna modellbeslut är dokumenterade i `tests/scenarios/README.md`.
 
 ## API
 

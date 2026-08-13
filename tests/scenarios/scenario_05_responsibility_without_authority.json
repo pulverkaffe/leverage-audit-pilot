@@ -1,0 +1,18 @@
+{
+  "id": "responsibility_without_authority",
+  "name": "Ansvar utan mandat",
+  "situation": "Rollerna säger att människor äger sina områden, men budget, prioriteringar och mandatgränser gör att besluten ändå måste uppåt.",
+  "answers": {
+    "C1": 1, "C2": 3, "C3": 3, "C4": 2,
+    "M1": 3, "M2": 3, "M3": 2, "M4": 1, "M5": 0, "M6": 0,
+    "M7": 1, "M8": 1, "M9": 2, "M10": 1, "M11": [1, 5], "M12": 1,
+    "H1": 4, "H2": 4, "H3": 0, "H4": 1, "H5": 1, "H6": 4,
+    "H7": 1, "H8": 2, "H9": 1
+  },
+  "expected": {
+    "profile": "Växande beroende",
+    "strongDimensions": ["Problemlösning och ansvar", "Kunskapsberoende"],
+    "weakDimensions": ["Beslut och mandat", "Organisationsdesign"],
+    "mustNotProfile": ["Operativ flaskhals"]
+  }
+}

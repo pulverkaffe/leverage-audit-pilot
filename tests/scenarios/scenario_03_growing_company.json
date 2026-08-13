@@ -1,0 +1,18 @@
+{
+  "id": "growing_company",
+  "name": "Växande bolag",
+  "situation": "Organisationen har vuxit snabbare än sina strukturer; beroendet är verkligt men grundaren är inte en generell operativ flaskhals.",
+  "answers": {
+    "C1": 0, "C2": 3, "C3": 3, "C4": 4,
+    "M1": 2, "M2": 1, "M3": 1, "M4": 2, "M5": 1, "M6": 1,
+    "M7": 1, "M8": 2, "M9": 1, "M10": 1, "M11": [1, 2, 3], "M12": 2,
+    "H1": 1, "H2": 2, "H3": 1, "H4": 2, "H5": 2, "H6": 2,
+    "H7": 2, "H8": 1, "H9": 1
+  },
+  "expected": {
+    "profile": "Växande beroende",
+    "strongDimensions": [],
+    "weakDimensions": ["Organisationsdesign"],
+    "mustNotProfile": ["Operativ flaskhals"]
+  }
+}

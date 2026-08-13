@@ -1,0 +1,18 @@
+{
+  "id": "strong_central_leader",
+  "name": "Stark central ledare",
+  "situation": "Ledaren tar legitima strategiska avvägningar medan teamet fattar vardagsbeslut och verksamheten fungerar vid frånvaro.",
+  "answers": {
+    "C1": 1, "C2": 1, "C3": 2, "C4": 1,
+    "M1": 0, "M2": 0, "M3": 0, "M4": 0, "M5": 0, "M6": 0,
+    "M7": 2, "M8": 2, "M9": 0, "M10": 0, "M11": [1], "M12": 1,
+    "H1": 0, "H2": 0, "H3": 0, "H4": 0, "H5": 0, "H6": 0,
+    "H7": 1, "H8": 0, "H9": 0
+  },
+  "expected": {
+    "profile": "Central ledare",
+    "strongDimensions": ["Beslut och mandat", "Problemlösning och ansvar", "Operativ självständighet", "Organisationsdesign", "Kunskapsberoende"],
+    "weakDimensions": [],
+    "mustNotProfile": ["Operativ flaskhals"]
+  }
+}
