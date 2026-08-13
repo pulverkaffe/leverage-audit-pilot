@@ -1,0 +1,17 @@
+{
+  "id": "problem_solver",
+  "name": "Problemlösaren",
+  "situation": "Ledaren löser snabbt andras problem, vilket gör att samma frågor återkommer och organisationen inte bygger egen problemlösningsförmåga.",
+  "answers": {
+    "C1": 0, "C2": 2, "C3": 2, "C4": 1,
+    "M1": 0, "M2": 1, "M3": 1, "M4": 3, "M5": 4, "M6": 4,
+    "M7": 4, "M8": 4, "M9": 1, "M10": 1, "M11": [3], "M12": 2,
+    "H1": 0, "H2": 0, "H3": 0, "H4": 1, "H5": 1, "H6": 0,
+    "H7": 1, "H8": 1, "H9": 1
+  },
+  "expected": {
+    "profile": "Operativ flaskhals",
+    "strongDimensions": ["Beslut och mandat", "Organisationsdesign"],
+    "weakDimensions": ["Problemlösning och ansvar", "Organisationens självständighet", "Kunskapsberoende"]
+  }
+}

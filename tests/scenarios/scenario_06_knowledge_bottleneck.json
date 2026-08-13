@@ -1,0 +1,17 @@
+{
+  "id": "knowledge_bottleneck",
+  "name": "Kunskapsflaskhalsen",
+  "situation": "Organisationen är kompetent men behöver ofta ledarens kundhistorik, sammanhang och minne för att kunna gå vidare.",
+  "answers": {
+    "C1": 1, "C2": 3, "C3": 2, "C4": 1,
+    "M1": 2, "M2": 0, "M3": 1, "M4": 1, "M5": 0, "M6": 0,
+    "M7": 1, "M8": 1, "M9": 1, "M10": 1, "M11": [5], "M12": 1,
+    "H1": 0, "H2": 0, "H3": 0, "H4": 0, "H5": 4, "H6": 0,
+    "H7": 0, "H8": 0, "H9": 0
+  },
+  "expected": {
+    "profile": "Växande beroende",
+    "strongDimensions": ["Problemlösning och ansvar", "Organisationens självständighet", "Organisationsdesign"],
+    "weakDimensions": ["Kunskapsberoende"]
+  }
+}

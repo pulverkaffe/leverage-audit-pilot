@@ -1,0 +1,18 @@
+{
+  "id": "false_independence",
+  "name": "Falsk självständighet",
+  "situation": "Formella mandat och fungerande möten döljer att människor söker sista godkännandet och undviker att bära den faktiska beslutsrisken.",
+  "answers": {
+    "C1": 1, "C2": 4, "C3": 3, "C4": 1,
+    "M1": 1, "M2": 2, "M3": 1, "M4": 1, "M5": 0, "M6": 0,
+    "M7": 1, "M8": 1, "M9": 2, "M10": 1, "M11": [0, 1, 6], "M12": 1,
+    "H1": 0, "H2": 0, "H3": 0, "H4": 0, "H5": 1, "H6": 1,
+    "H7": 0, "H8": 3, "H9": 3
+  },
+  "expected": {
+    "profile": "Växande beroende",
+    "strongDimensions": ["Problemlösning och ansvar", "Organisationsdesign", "Kunskapsberoende"],
+    "weakDimensions": ["Beslut och mandat", "Organisationens självständighet"],
+    "mustNotProfile": ["Självständig organisation"]
+  }
+}
