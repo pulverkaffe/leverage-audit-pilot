@@ -11,7 +11,7 @@
   },
   "expected": {
     "profile": "Operativ flaskhals",
-    "strongDimensions": ["Beslut och mandat", "Operativ självständighet", "Organisationsdesign", "Kunskapsberoende"],
-    "weakDimensions": ["Problemlösning och ansvar"]
+    "strongDimensions": ["Beslut och mandat", "Organisationsdesign"],
+    "weakDimensions": ["Problemlösning och ansvar", "Organisationens självständighet", "Kunskapsberoende"]
   }
 }

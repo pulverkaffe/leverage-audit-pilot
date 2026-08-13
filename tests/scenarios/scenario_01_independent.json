@@ -11,7 +11,7 @@
   },
   "expected": {
     "profile": "Självständig organisation",
-    "strongDimensions": ["Beslut och mandat", "Problemlösning och ansvar", "Operativ självständighet", "Organisationsdesign", "Kunskapsberoende"],
+    "strongDimensions": ["Beslut och mandat", "Problemlösning och ansvar", "Organisationens självständighet", "Organisationsdesign", "Kunskapsberoende"],
     "weakDimensions": []
   }
 }

@@ -11,8 +11,8 @@
   },
   "expected": {
     "profile": "Växande beroende",
-    "strongDimensions": ["Problemlösning och ansvar", "Kunskapsberoende"],
-    "weakDimensions": ["Beslut och mandat", "Operativ självständighet", "Organisationsdesign"],
+    "strongDimensions": ["Problemlösning och ansvar", "Organisationsdesign", "Kunskapsberoende"],
+    "weakDimensions": ["Beslut och mandat", "Organisationens självständighet"],
     "mustNotProfile": ["Självständig organisation"]
   }
 }

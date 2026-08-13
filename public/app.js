@@ -421,6 +421,8 @@
     const localization = state.answers.M11?.labels || [];
     const evidence = buildEvidence(signals);
 
+    const resultModel = globalThis.LeverageAuditResultModel?.evaluate(state.answers) || null;
+
     return {
       version: VERSION,
       participant_id: participantId,
@@ -433,7 +435,8 @@
       localization,
       drivers,
       contradictions,
-      evidence
+      evidence,
+      result_model_v2: resultModel
     };
   }
 
@@ -501,7 +504,7 @@
     return { level, actual_absence_available: actualAbsence, concrete_signal_count: concrete };
   }
 
-  const leverageProfiles = {
+  const legacyLeverageProfiles = {
     independent: {
       name: 'Självständig organisation',
       description: 'Beslut och problemlösning verkar i stor utsträckning ske nära där arbetet händer. Din roll framstår inte som en nödvändig operativ mellanlandning i de flesta vardagssituationer.'
@@ -523,88 +526,21 @@
   const signalRank = { insufficient: -1, limited: 0, emerging: 1, notable: 2, strong: 3 };
 
   function resultProfile(diagnostic) {
+    if (diagnostic.result_model_v2?.profile) return diagnostic.result_model_v2.profile;
+    const v2Result = globalThis.LeverageAuditResultModel?.evaluate(state.answers);
+    if (v2Result?.profile) return v2Result.profile;
+
     const maxRank = Math.max(-1, ...Object.values(diagnostic.signals || {}).map(signal => signalRank[signal.level] ?? -1));
     let key = 'independent';
     if (maxRank >= 3) key = 'bottleneck';
     else if (maxRank >= 2 || diagnostic.primary_pattern === 'leaderHeldWork') key = 'central';
     else if (maxRank >= 1) key = 'growing';
-    return { key, ...leverageProfiles[key] };
-  }
-
-  function signalStatus(level) {
-    return ({
-      limited: { label: 'Fungerar mer självständigt', tone: 'positive' },
-      emerging: { label: 'Visar början till beroende', tone: 'watch' },
-      notable: { label: 'Visar tydligt beroende', tone: 'elevated' },
-      strong: { label: 'Visar starkt beroende', tone: 'high' },
-      insufficient: { label: 'Otillräckligt underlag', tone: 'neutral' }
-    })[level] || { label: 'Ej bedömt', tone: 'neutral' };
-  }
-
-  function signalDimension(diagnostic, signalKey, copy) {
-    const level = diagnostic.signals?.[signalKey]?.level || 'insufficient';
-    const status = signalStatus(level);
-    return { ...status, diagnosis: copy[level] || copy.insufficient };
-  }
-
-  function driverDimension(diagnostic, keys, copy) {
-    const drivers = (diagnostic.drivers || []).filter(driver => keys.includes(driver.key));
-    if (drivers.some(driver => driver.strength === 'supported')) {
-      return { label: 'Tydlig indikation att undersöka', tone: 'elevated', diagnosis: copy.supported };
-    }
-    if (drivers.some(driver => driver.strength === 'weak')) {
-      return { label: 'Viss indikation att undersöka', tone: 'watch', diagnosis: copy.weak };
-    }
-    return { label: 'Ingen tydlig pilotsignal', tone: 'neutral', diagnosis: copy.none };
+    return { key, ...legacyLeverageProfiles[key] };
   }
 
   function resultDimensions(diagnostic) {
-    const decision = signalDimension(diagnostic, 'decision', {
-      limited: 'Beslut verkar oftast kunna röra sig vidare utan att din tillgänglighet avgör tempot.',
-      emerging: 'Enstaka beslut eller godkännanden söker fortfarande vägen via dig.',
-      notable: 'Flera beslut och godkännanden verkar behöva passera dig innan arbetet går vidare.',
-      strong: 'Beslutsflödet verkar tydligt beroende av din närvaro eller bekräftelse.',
-      insufficient: 'Det finns inte tillräckligt underlag för en preliminär bedömning av beslutsflödet.'
-    });
-    const problemSolving = signalDimension(diagnostic, 'intervention', {
-      limited: 'Problem och uppgifter verkar oftast stanna hos den som ansvarar för dem.',
-      emerging: 'Vissa problem eller uppgifter kommer tillbaka till dig trots att någon annan äger dem.',
-      notable: 'Problemlösning och ansvar verkar återkommande förflyttas tillbaka till dig.',
-      strong: 'Du verkar ofta bli den plats där problem landar eller där ansvar tas tillbaka.',
-      insufficient: 'Det finns inte tillräckligt underlag för en preliminär bedömning av problemlösningen.'
-    });
-    const operations = signalDimension(diagnostic, 'availability', {
-      limited: 'Arbetet verkar i stor utsträckning kunna fortsätta när du inte är tillgänglig.',
-      emerging: 'Vissa delar av arbetet tappar tempo eller väntar när du inte är tillgänglig.',
-      notable: 'Din tillgänglighet verkar ha tydlig betydelse för att arbetet ska fortsätta framåt.',
-      strong: 'Arbetets tempo och kontinuitet verkar vara starkt kopplade till din närvaro.',
-      insufficient: 'Det finns inte tillräckligt underlag för en preliminär bedömning av den operativa självständigheten.'
-    });
-    const organization = driverDimension(diagnostic, [
-      'decision_authority_ambiguity',
-      'accountability_ambiguity',
-      'capability_constraint',
-      'resource_authority_mismatch',
-      'coordination_architecture_gap',
-      'leader_recentralization'
-    ], {
-      supported: 'Dagens pilotlogik pekar på att ansvar, mandat eller samordning kan göra organisationen mer beroende av dig än nödvändigt.',
-      weak: 'Det finns tecken på att ansvar, mandat eller samordning kan begränsa självständigheten, men underlaget är inte entydigt.',
-      none: 'Dagens pilotlogik pekar inte ut någon särskild strukturell förklaring. Det betyder inte att området är fullt ut självständigt.'
-    });
-    const knowledge = driverDimension(diagnostic, ['information_concentration'], {
-      supported: 'Viktig kunskap, historik eller sammanhang verkar vara koncentrerat hos dig och kan göra dig till en informationsflaskhals.',
-      weak: 'Det finns tecken på att andra behöver kunskap eller sammanhang som främst finns hos dig.',
-      none: 'Dagens pilotlogik visar ingen tydlig koncentration av kunskap hos dig, men området har ännu ingen egen dimensionspoäng.'
-    });
-
-    return [
-      { title: 'Beslut och mandat', question: 'Kan människor fatta beslut utan att behöva gå via dig?', ...decision },
-      { title: 'Problemlösning och ansvar', question: 'Löses problem där de uppstår, eller hamnar de fortfarande hos dig?', ...problemSolving },
-      { title: 'Operativ självständighet', question: 'Fortsätter arbetet att röra sig framåt utan din direkta närvaro?', ...operations },
-      { title: 'Organisationsdesign', question: 'Är ansvar, mandat och samarbete byggda för självständighet?', ...organization },
-      { title: 'Kunskapsberoende', question: 'Finns viktig kunskap i organisationen eller främst hos dig?', ...knowledge }
-    ];
+    if (diagnostic.result_model_v2?.dimensions) return diagnostic.result_model_v2.dimensions;
+    return globalThis.LeverageAuditResultModel?.evaluate(state.answers)?.dimensions || [];
   }
 
   function observationText(id) {
@@ -655,6 +591,10 @@
   }
 
   function biggestOpportunity(diagnostic) {
+    const primaryFocus = diagnostic.result_model_v2?.primaryFocus
+      || globalThis.LeverageAuditResultModel?.evaluate(state.answers)?.primaryFocus;
+    if (primaryFocus?.recommendation) return primaryFocus.recommendation;
+
     const dKeys = diagnostic.drivers.map(d => d.key);
     switch (diagnostic.primary_pattern) {
       case 'decision':
@@ -690,7 +630,7 @@
     if (!diagnostic.evidence.actual_absence_available) limitations.push('Du saknade en relevant faktisk frånvaroepisod. Bedömningen av hur organisationen fungerar utan dig blir därför svagare.');
     if (!limitations.length) limitations.push('Det här är en 5–8 minuters självskattning. Den kan visa ett mönster, men kan inte fastställa om beroendet är legitimt eller exakt vad som orsakar det utan ytterligare data.');
 
-    const profileScale = Object.entries(leverageProfiles).map(([key, item]) => `
+    const profileScale = Object.entries(globalThis.LeverageAuditResultModel?.profiles || legacyLeverageProfiles).map(([key, item]) => `
       <div class="profile-step ${profile.key === key ? 'active' : ''}">
         <span class="profile-dot" aria-hidden="true"></span>
         <span>${escapeHtml(item.name)}</span>
@@ -716,20 +656,15 @@
         </div>
 
         <div class="result-overview">
-          <div class="score-card">
-            <div class="score-label">Leverage Score</div>
-            <div class="score-value" aria-label="Numerisk poäng är ännu inte aktiverad">–<span>/100</span></div>
-            <p>Den numeriska poängen kopplas in när de fem områdenas viktning och profilgränser är låsta.</p>
-          </div>
           <div class="profile-card">
-            <div class="profile-kicker">Din preliminära profil</div>
+            <div class="profile-kicker">Din profil</div>
             <h2>${escapeHtml(profile.name)}</h2>
             <p>${escapeHtml(profile.description)}</p>
-            <div class="profile-basis">Bygger på befintlig pilotlogik</div>
+            <div class="profile-basis">Bygger på dina svar i de fem dimensionerna</div>
           </div>
         </div>
 
-        <div class="profile-scale" aria-label="Fyra preliminära Leverage-profiler">
+        <div class="profile-scale" aria-label="Fyra Leverage-profiler">
           ${profileScale}
         </div>
 
@@ -742,7 +677,7 @@
             <p>Områdena visar var självständigheten verkar starkare och var din involvering fortfarande kan vara en nödvändig del av flödet.</p>
           </div>
           <div class="dimension-grid">${dimensionCards}</div>
-          <p class="model-note">De tre första områdena använder befintliga pilotsignaler. Organisationsdesign och kunskapsberoende visas som kvalitativa indikationer tills den fullständiga dimensionsscoringen är låst.</p>
+          <p class="model-note">Bedömningen är kategorisk och regelstyrd. Ingen numerisk poäng visas, eftersom auditen inte ska ge sken av större precision än underlaget medger.</p>
         </div>
 
         <div class="section focus-section">

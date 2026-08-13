@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const TESTS_DIR = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const REPO_ROOT = path.dirname(TESTS_DIR);
 const APP_PATH = path.join(REPO_ROOT, 'public', 'app.js');
+const RESULT_MODEL_PATH = path.join(REPO_ROOT, 'public', 'result-model-v2.js');
 const HOOK_ANCHOR = '  // Resume completed audits directly to result, otherwise show welcome.';
 
 function createContext() {
@@ -73,6 +74,7 @@ function inflateAnswers(questions, fixtureAnswers) {
 
 export function loadResultModel() {
   const context = createContext();
+  vm.runInContext(fs.readFileSync(RESULT_MODEL_PATH, 'utf8'), context, { filename: RESULT_MODEL_PATH });
   const source = instrument(fs.readFileSync(APP_PATH, 'utf8'));
   vm.runInContext(source, context, { filename: APP_PATH });
 
@@ -82,7 +84,12 @@ export function loadResultModel() {
   return {
     questions: [...hooks.questions],
     evaluate(fixtureAnswers) {
-      return hooks.evaluate(inflateAnswers(hooks.questions, fixtureAnswers));
+      const answers = inflateAnswers(hooks.questions, fixtureAnswers);
+      const result = hooks.evaluate(answers);
+      return {
+        ...result,
+        v2: context.LeverageAuditResultModel.evaluate(answers)
+      };
     }
   };
 }
