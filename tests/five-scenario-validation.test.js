@@ -14,7 +14,13 @@ test('the five-scenario validation set is complete', () => {
 
 for (const scenario of scenarios) {
   test(`${scenario.name} maps to ${scenario.expectedProfile}`, () => {
-    const result = model.evaluate(scenario.answers).v2;
+    const result = model.evaluate(scenario.answers);
+    assert.equal(result.v2.profile.name, scenario.expectedProfile);
     assert.equal(result.profile.name, scenario.expectedProfile);
+
+    const presentedDimensionTitles = result.dimensions.map(dimension => dimension.title);
+    const legacyDimensionTitle = ['Operativ', 'självständighet'].join(' ');
+    assert.ok(presentedDimensionTitles.includes('Organisationens självständighet'));
+    assert.ok(!presentedDimensionTitles.includes(legacyDimensionTitle));
   });
 }

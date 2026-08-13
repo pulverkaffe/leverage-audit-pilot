@@ -190,12 +190,30 @@
     const takeoverRisk = meanRisk(answers, ['M5', 'M6']);
     const operationalDependencyRisk = meanRisk(answers, ['M5', 'M6', 'M9', 'H5']);
     const structuralDependencyRisk = meanRisk(answers, ['H1', 'H2', 'H6', 'H7']);
+    const mandateAmbiguityRisk = meanRisk(answers, ['H1', 'H2']);
+    const approvalDependencyRisk = meanRisk(answers, ['M1', 'M2', 'H6']);
+    const coordinationDependencyRisk = meanRisk(answers, ['M7', 'H7']);
     const operationalBottleneck = operationalDependencyRisk != null
       && (
         operationalDependencyRisk >= 2.5
         || (takeoverRisk >= 3 && byId.problem_solving?.score >= 2.5)
       );
     if (operationalBottleneck) return profiles.bottleneck;
+
+    // When reduced independence, unclear mandates, upward approvals and
+    // coordination gaps occur together, the leader's centrality is systemic.
+    // This growing-dependency pattern takes priority over intentional centrality.
+    const systemicStructuralDependency = byId.organizational_independence?.score > 1
+      && mandateAmbiguityRisk >= 1.75
+      && approvalDependencyRisk >= 1.75
+      && coordinationDependencyRisk >= 1.75;
+    if (systemicStructuralDependency) return profiles.growing;
+
+    const structuralDependency = structuralDependencyRisk != null
+      && (
+        structuralDependencyRisk >= 1.75
+        || byId.organization_design?.score > 1.75
+      );
 
     const healthyFoundation = [
       byId.decision_authority,
@@ -204,6 +222,7 @@
       byId.knowledge_dependency
     ].every(dimension => dimension.score != null && dimension.score <= 1);
     const intentionalCentrality = healthyFoundation
+      && !structuralDependency
       && byId.organizational_independence?.score <= 1
       && coordinationRisk != null && coordinationRisk >= 1.5
       && (absenceRisk == null || absenceRisk <= 1);
@@ -211,11 +230,6 @@
 
     if (scoredDimensions.every(dimension => dimension.level === 'strong')) return profiles.independent;
 
-    const structuralDependency = structuralDependencyRisk != null
-      && (
-        structuralDependencyRisk >= 1.75
-        || byId.organization_design?.score > 1.75
-      );
     if (structuralDependency) return profiles.growing;
 
     return profiles.growing;
